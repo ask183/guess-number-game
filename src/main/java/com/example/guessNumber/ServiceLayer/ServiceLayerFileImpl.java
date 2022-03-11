@@ -35,7 +35,13 @@ public class ServiceLayerFileImpl implements ServiceLayer {
     public List<Game> getAllGames() {
         //nothing to do on service layer, the DAO takes care of everything
         //pass through 
-        return gDAO.getAll();
+        List<Game> games = gDAO.getAll();
+        for (Game g: games){
+            if(g.isInProgress() == true){
+                g.setAnswer("****");
+            }
+        }
+        return games; 
     }
 
     @Override
